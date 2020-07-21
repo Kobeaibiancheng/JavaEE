@@ -17,7 +17,7 @@ public class UserDao {
      * @param loginUser
      * @return
      */
-    public User login(User loginUser) throws SQLException {
+    public static User login(User loginUser) throws SQLException {
         Connection connection = null;
         PreparedStatement ps = null;
         User user = null;
@@ -320,7 +320,7 @@ public class UserDao {
         return count;
     }
 
-    /*public static void main(String[] args) throws SQLException {
+    public static void main(String[] args) throws SQLException {
         User user = new User();
         user.setId(8);
         user.setUserName("wangyuxiang");
@@ -344,5 +344,5 @@ public class UserDao {
         for (User u : list) {
             System.out.println(u);
         }
-    }*/
+    }
 }
