@@ -32,7 +32,7 @@ public class FindUserServlet extends HttpServlet {
             System.out.println("没有要修改的对象！");
         }else {
             req.getSession().setAttribute("updateUser",user);
-            resp.sendRedirect("/update.html");
+            resp.sendRedirect("/usermanager/update.html");
         }
     }
 }
