@@ -69,19 +69,20 @@ public class UserDao {
         ResultSet resultSet = null;
 
         try {
-            String sql = "insert into usermessage(name,username,password,gender,age,address,qq,email) " +
-                    "values (?,?,?,?,?,?,?,?)";
+            String sql = "insert into usermessage(name,username,password,position,gender,age,address,qq,email) " +
+                    "values (?,?,?,?,?,?,?,?,?)";
             connection  = DBUtil.getConnection(true);
             ps = connection.prepareStatement(sql);
 
             ps.setString(1,user.getName());
             ps.setString(2,user.getUserName());
             ps.setString(3,user.getPassword());
-            ps.setString(4,user.getGender());
-            ps.setInt(5,user.getAge());
-            ps.setString(6,user.getAddress());
-            ps.setString(7,user.getQq());
-            ps.setString(8,user.getEmail());
+            ps.setString(4,user.getPosition());
+            ps.setString(5,user.getGender());
+            ps.setInt(6,user.getAge());
+            ps.setString(7,user.getAddress());
+            ps.setString(8,user.getQq());
+            ps.setString(9,user.getEmail());
 
             int ret = ps.executeUpdate();
             return ret;
@@ -253,6 +254,7 @@ public class UserDao {
                 user.setName(resultSet.getString("name"));
                 user.setUserName(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
+                user.setPosition(resultSet.getString("position"));
                 user.setGender(resultSet.getString("gender"));
                 user.setAge(resultSet.getInt("age"));
                 user.setAddress(resultSet.getString("address"));
