@@ -10,6 +10,15 @@ public class User {
     private String address;
     private String qq;
     private String email;
+    private String position;
+
+    public String getPosition() {
+        return position;
+    }
+
+    public void setPosition(String position) {
+        this.position = position;
+    }
 
     public String getGender() {
         return gender;
@@ -51,6 +60,7 @@ public class User {
                 ", address='" + address + '\'' +
                 ", qq='" + qq + '\'' +
                 ", email='" + email + '\'' +
+                ", position='" + position + '\'' +
                 '}';
     }
 
