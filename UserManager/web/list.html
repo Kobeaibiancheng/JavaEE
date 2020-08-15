@@ -26,11 +26,11 @@
     </style>
     <script type="text/javascript">
 
-        function load(rows,currentPage,name,address,email){
-            console.log(rows,currentPage,name,address,email);
+        function load(rows,currentPage,name,position,address,email){
+            console.log(rows,currentPage,name,position,address,email);
             $.ajax({
                 url:"/usermanager/findByPageServlet",
-                data: {currentPage:currentPage,rows:rows,name:name,address:address,email:email},
+                data: {currentPage:currentPage,rows:rows,name:name,position:position,address:address,email:email},
                 type:"POST",
                 dataType:"json",
                 //fp中存放的是所有的用户信息
@@ -44,6 +44,7 @@
                             '            <td>'+j+'</td>\n' +
                             '            <td>'+fp.list[i].name+'</td>\n' +
                             '            <td>'+fp.list[i].gender+'</td>\n' +
+                            '            <td>'+fp.list[i].position+'</td>\n' +
                             '            <td>'+fp.list[i].age+'</td>\n' +
                             '            <td>'+fp.list[i].address+'</td>\n' +
                             '            <td>'+fp.list[i].qq+'</td>\n' +
@@ -67,6 +68,9 @@
                     if(name===undefined){
                         name="";
                     }
+                    if(position===undefined){
+                        position="";
+                    }
                     if(address===undefined){
                         address="";
                     }
@@ -76,7 +80,7 @@
 
                     var prePage ='      ' +
                         '               <li>\n' +
-                        '                    <a href="javascript:load('+5+','+pre+',&quot;'+name+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)" aria-label="Previous">\n' +
+                        '                    <a href="javascript:load('+5+','+pre+',&quot;'+name+'&quot;&quot;'+position+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)" aria-label="Previous">\n' +
                         '                        <span aria-hidden="true">&laquo;</span>\n' +
                         '                    </a>\n' +
                         '                </li>';
@@ -85,15 +89,15 @@
                     result_lis+=prePage;
                     for(var i=1;i<=fp.totalPage;i++){
                         if(currentPage===i){
-                            var li='<li class="active"><a href="javascript:load('+5+','+i+',&quot;'+name+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)">'+i+'</a></li>';
+                            var li='<li class="active"><a href="javascript:load('+5+','+i+',&quot;'+name+'&quot;,&quot;'+position+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)">'+i+'</a></li>';
                         }else{
-                            var li='<li><a href="javascript:load('+5+','+i+',&quot;'+name+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)">'+i+'</a></li>';
+                            var li='<li><a href="javascript:load('+5+','+i+',&quot;'+name+'&quot;,&quot;'+position+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)">'+i+'</a></li>';
                         }
                         result_lis+=li;
                     }
 
                     var nextPage='           <li>\n' +
-                        '                    <a href="javascript:load('+5+','+next+',&quot;'+name+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)" aria-label="Next">\n' +
+                        '                    <a href="javascript:load('+5+','+next+',&quot;'+name+'&quot;,&quot;'+position+'&quot;,&quot;'+address+'&quot;,&quot;'+email+'&quot;)" aria-label="Next">\n' +
                         '                        <span aria-hidden="true">&raquo;</span>\n' +
                         '                    </a>\n' +
                         '                </li>';
@@ -187,6 +191,7 @@
             <th>编号</th>
             <th>姓名</th>
             <th>性别</th>
+            <th>职位</th>
             <th>年龄</th>
             <th>籍贯</th>
             <th>QQ</th>
