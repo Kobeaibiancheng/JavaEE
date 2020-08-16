@@ -42,10 +42,14 @@ public class UserDao {
                 user.setUserName(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
                 user.setGender(resultSet.getString("gender"));
+
+                user.setPosition(resultSet.getString("position"));
+
                 user.setAge(resultSet.getInt("age"));
                 user.setAddress(resultSet.getString("address"));
                 user.setQq(resultSet.getString("qq"));
                 user.setEmail(resultSet.getString("email"));
+                //System.out.println(user);
             }/*else {
                 return null;
             }*/
@@ -68,6 +72,7 @@ public class UserDao {
         PreparedStatement ps = null;
         ResultSet resultSet = null;
 
+        System.out.println(user.getPosition());
         try {
             String sql = "insert into usermessage(name,username,password,position,gender,age,address,qq,email) " +
                     "values (?,?,?,?,?,?,?,?,?)";
@@ -150,6 +155,7 @@ public class UserDao {
                 user.setName(resultSet.getString("name"));
                 user.setUserName(resultSet.getString("username"));
                 user.setPassword(resultSet.getString("password"));
+                user.setPosition(resultSet.getString("position"));
                 user.setGender(resultSet.getString("gender"));
                 user.setAge(resultSet.getInt("age"));
                 user.setAddress(resultSet.getString("address"));
@@ -179,7 +185,7 @@ public class UserDao {
 
 
         try{
-            String sql = "update usermessage set name = ?,age = ?,gender = ?,address = ?,qq = ?,email = ? " +
+            String sql = "update usermessage set name = ?,age = ?,gender = ?,address = ?,qq = ?,email = ? ,position = ?" +
                     "where id = ?";
             connection  = DBUtil.getConnection(true);
             ps = connection.prepareStatement(sql);
@@ -189,7 +195,8 @@ public class UserDao {
             ps.setString(4,updateUser.getAddress());
             ps.setString(5,updateUser.getQq());
             ps.setString(6,updateUser.getEmail());
-            ps.setInt(7,updateUser.getId());
+            ps.setString(7,updateUser.getPosition());
+            ps.setInt(8,updateUser.getId());
 
             int ret = ps.executeUpdate();
             return ret;

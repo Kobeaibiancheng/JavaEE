@@ -16,6 +16,23 @@
 
     <!-- 1. 导入CSS的全局样式 -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        td, th {
+            text-align: center;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: auto;
+        }
+
+        body {
+            background: url(images/sandbeach.jpg) no-repeat 100% 100%;
+            background-size: cover;
+        }
+    </style>
     <!-- 2. jQuery导入，建议使用1.9以上的版本 -->
     <script src="js/jquery-2.1.0.min.js"></script>
     <!-- 3. 导入bootstrap的js文件 -->
@@ -25,13 +42,14 @@
             $("#submit").click(function () {
                 var name=$("#name").val();
                 var gender=$('input:radio:checked').val();
+                var position=$("#position").val();
                 var age=$("#age").val();
                 var address= $("#address option:selected").val();
                 var qq=$("#qq").val();
                 var email=$("#email").val();
                 $.ajax({
                     url:"/usermanager/addServlet",
-                    data:{"name":name,"gender":gender,"age":age,"address":address,"qq":qq,"email":email},
+                    data:{"name":name,"gender":gender,"position":position,"age":age,"address":address,"qq":qq,"email":email},
                     type:"post",
                     dataType:"json",
                     success:function (data) {
@@ -56,6 +74,7 @@
             });
             $("#reset").click(function () {
                 $("#name").val("");
+                $("#position").val("");
                 $("#age").val("");
                 $("#qq").val("");
                 $("#email").val("");
@@ -76,6 +95,11 @@
             <label>性别：</label>
             <input type="radio" name="sex" value="男" checked="checked"/>男
             <input type="radio" name="sex" value="女"/>女
+        </div>
+
+        <div class="form-group">
+            <label for="position">职位：</label>
+            <input type="text" class="form-control" id="position" name="position" placeholder="请输入职位">
         </div>
 
         <div class="form-group">

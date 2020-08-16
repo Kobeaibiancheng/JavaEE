@@ -16,6 +16,7 @@ public class ReturnServlet extends HttpServlet {
         resp.setContentType("application/json;charset=utf-8");
 
         Object user = req.getSession().getAttribute("updateUser");
+        System.out.println(user);
 
         //把登录成功的map返回给前端。json      : 便于前端进行处理。
         ObjectMapper objectMapper = new ObjectMapper();

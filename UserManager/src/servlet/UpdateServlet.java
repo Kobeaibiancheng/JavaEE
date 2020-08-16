@@ -25,6 +25,7 @@ public class UpdateServlet extends HttpServlet {
         String address = req.getParameter("address");
         String qq = req.getParameter("qq");
         String email = req.getParameter("email");
+        String position = req.getParameter("position");
 
         Object us = req.getSession().getAttribute("updateUser");
         User user = (User)us;
@@ -33,6 +34,7 @@ public class UpdateServlet extends HttpServlet {
         updateUser.setId(user.getId());
         updateUser.setName(name);
         updateUser.setGender(gender);
+        updateUser.setPosition(position);
         updateUser.setAge(age);
         updateUser.setAddress(address);
         updateUser.setQq(qq);
