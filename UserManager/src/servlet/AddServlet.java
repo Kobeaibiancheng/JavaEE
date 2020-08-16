@@ -29,6 +29,9 @@ public class AddServlet extends HttpServlet {
         String address = req.getParameter("address");
         String qq = req.getParameter("qq");
         String email = req.getParameter("email");
+        String position = req.getParameter("position");
+
+        System.out.println(position);
 
         User addUser = new User();
         addUser.setName(name);
@@ -37,7 +40,12 @@ public class AddServlet extends HttpServlet {
         addUser.setAddress(address);
         addUser.setQq(qq);
         addUser.setEmail(email);
+        addUser.setPosition(position);
 
+
+        System.out.println("===============");
+
+        System.out.println(addUser);
 
         UserService userService = new UserService();
         try {
