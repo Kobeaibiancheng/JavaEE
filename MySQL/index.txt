@@ -1,1 +1,23 @@
+#database:study
+#table:exam_result
 
+创建索引：
+create [unique | fulltext] index index_name on table_name(index_col_name,…)
+查看索引：
+show index from table_name;
+删除索引：
+drop index index_name on table_name;
+
+
+
+
+
+show index from exam_result;//查询该表的所有索引
+
+create index index_stu_name on exam_result(name);//为表中的name字段创建索引
+
+create unique index index_stu_chinese on exam_result(chinese);//为表中的chinese创建唯一索引，字段的值不能重复
+#drop index index_stu_chinese on exam_result;
+
+create index index_stu_cme on exam_result(chinese,math,english);//为表中的chinese,math,english创建联合索引，字段顺序是有讲究的
+show index from exam_result;
