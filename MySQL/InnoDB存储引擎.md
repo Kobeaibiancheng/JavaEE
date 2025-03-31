@@ -173,7 +173,7 @@ creator_trx_id//ReadView创建的事务id
 
 ![image-20250331214814463](C:\Users\Tibet\AppData\Roaming\Typora\typora-user-images\image-20250331214814463.png)
 
-## RR级别
+## RR隔离级别下的MVCC
 
 该事务隔离级别下，仅在事务第一次执行快照读时生成readview，后续复用该readview。
 
