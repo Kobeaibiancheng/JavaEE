@@ -43,5 +43,14 @@
     <!--<bean id="duck4" factory-bean="duckFactory" factory-method="create2"/>-->
 
 
-    <bean id="test" class="yuxiang.model.Test"/>
+    <!--<bean id="test" class="yuxiang.model.Test"/>-->
+    <!--<bean id="userDao1" class="com.spring.impl.UserDaoImpl" scope="prototype"></bean>-->
+    <!--<bean id="userDao" class="com.spring.impl.UserDaoImpl" init-method="init" destroy-method="destory"></bean>-->
+    <!--<bean id="userDao" class="com.spring.factory.StaticFactory" factory-method="getUserDao"></bean>-->
+    <!--<bean id="factory" class="com.spring.factory.DynamicFactory"></bean>-->
+    <!--<bean id="userDao" factory-bean="factory" factory-method="getUserDao"></bean>-->
+    <bean id="userDao" class="com.spring.impl.UserDaoImpl"></bean>
+    <bean id="userService" class="com.spring.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>
 </beans>
