@@ -49,8 +49,63 @@
     <!--<bean id="userDao" class="com.spring.factory.StaticFactory" factory-method="getUserDao"></bean>-->
     <!--<bean id="factory" class="com.spring.factory.DynamicFactory"></bean>-->
     <!--<bean id="userDao" factory-bean="factory" factory-method="getUserDao"></bean>-->
-    <bean id="userDao" class="com.spring.impl.UserDaoImpl"></bean>
-    <bean id="userService" class="com.spring.impl.UserServiceImpl">
-        <property name="userDao" ref="userDao"></property>
+
+
+    <!--注入基本数据类型-->
+    <!--<bean id="userDao" class="com.spring.impl.UserDaoImpl">
+        <property name="username" value="张三"/>
+        <property name="age" value="18">
+
+        </property>
+    </bean>-->
+
+
+    <!--注入集合数据类型-->
+    <bean id="userDao" class="com.spring.impl.UserDaoImpl">
+        <!--注入List数据类型-->
+        <property name="list">
+            <list>
+                <value>aaa</value>
+                <value>bbb</value>
+                <value>ccc</value>
+            </list>
+        </property>
+
+        <!--注入Map数据类型-->
+        <property name="userMap">
+            <map>
+                <entry key="u1" value-ref="user1"></entry>
+                <entry key="u2" value-ref="user2"></entry>
+            </map>
+        </property>
+
+        <!--注入Properties数据类型-->
+        <property name="properties">
+            <props>
+                <prop key="p1">ppp1</prop>
+                <prop key="p2">ppp2</prop>
+                <prop key="p3">ppp3</prop>
+            </props>
+        </property>
     </bean>
+
+    <bean id="user1" class="com.spring.domain.User">
+        <property name="name" value="tom"></property>
+        <property name="address" value="xian"></property>
+    </bean>
+
+    <bean id="user2" class="com.spring.domain.User">
+        <property name="name" value="lucy"></property>
+        <property name="address" value="beijing"></property>
+    </bean>
+
+    <!--<bean id="userService" class="com.spring.impl.UserServiceImpl">
+        <property name="userDao" ref="userDao"></property>
+    </bean>-->
+
+
+    <bean id="userService" class="com.spring.impl.UserServiceImpl">
+        <constructor-arg name="userDao" ref="userDao"></constructor-arg>
+    </bean>
+
 </beans>
