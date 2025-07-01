@@ -1,8 +1,8 @@
 package beans.factory.support;
 
+import beans.factory.BeanFactory;
 import beans.factory.config.BeanDefinition;
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
 
 public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry implements BeanFactory {
     @Override
@@ -12,11 +12,26 @@ public abstract class AbstractBeanFactory extends DefaultSingletonBeanRegistry i
             return bean;
         }
         BeanDefinition beanDefinition = getBeanDefinition(name);
-        return createBean(beanDefinition);
+        return createBean(name, beanDefinition);
 
     }
 
-    protected abstract Object createBean(BeanDefinition beanDefinition);
+    /**
+     * 抽象方法获取bean
+     * @param beanName
+     * @return
+     */
+    protected abstract BeanDefinition getBeanDefinition(String beanName) throws BeansException;
 
-    protected abstract BeanDefinition getBeanDefinition(String name);
+
+
+    /**
+     * 抽象方法创建bean
+     * @param beanDefinition
+     * @return
+     */
+    protected abstract Object createBean(String beanName, BeanDefinition beanDefinition) throws BeansException;
+
+
+
 }
